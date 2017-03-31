@@ -1,4 +1,7 @@
 $(function() {
     var header = $('#app-header h1')
-    console.log(header);
+    var header2 = document.getElementById('app-header')
+    var seleccion = $([ document, header ]);
+
+    $('header[data-title='TVify']')
 });
