@@ -1,19 +1,29 @@
+var $ = require('jquery');
+
 $(function() {
 
     var $tvShowsContainer = $('#app-body').find('.tv-shows');
+
+    $tvShowsContainer.on('click', 'button.like', function(event) {
+        var $this = $(this);
+        // $this.animate({
+        //     'fontSize' : '30px'
+        // }, 'fast');
+        $this.closest('.tv-show').toggleClass('liked');
+    })
 
     function renderShows(shows) {
         $tvShowsContainer.find('.loader').remove();
         shows.forEach(function (show) {
             var article = template
                 .replace(':name:', show.name)
-                .replace(':img:', show.image.medium)
+                .replace(':img:', show.image ? show.image.medium : '')
                 .replace(':summary:', show.summary)
                 .replace(':img alt:', show.name +  " Logo")
 
                 var $article = $(article)
                 $article.hide();
-                $tvShowsContainer.append($article.show('slow'))
+                $tvShowsContainer.append($article.fadeIn(3500))
         });
     }
 
@@ -50,6 +60,7 @@ $(function() {
         '<div class="right info">'+
             '<h1>:name:</h1>'+
             '<p>:summary:</p>'+
+            '<button class="like"><3</button>'+
         '</div>'+
     '</article>';
 
